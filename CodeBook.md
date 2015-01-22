@@ -1,18 +1,15 @@
 # CodeBook.md
 
-Getting and Cleaning Data - course project
+## Getting and Cleaning Data - course project
 
-==================================================================
-Human Activity Recognition Using Smartphones Dataset
-Version 1.0
-==================================================================
-Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, Luca Oneto.
-Smartlab - Non Linear Complex Systems Laboratory
-DITEN - Universit<E0> degli Studi di Genova.
-Via Opera Pia 11A, I-16145, Genoa, Italy.
-activityrecognition@smartlab.ws
-www.smartlab.ws
-==================================================================
+Human Activity Recognition Using Smartphones Dataset  
+Version 1.0  
+Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, Luca Oneto.  
+Smartlab - Non Linear Complex Systems Laboratory  
+DITEN - Universit<E0> degli Studi di Genova.  
+Via Opera Pia 11A, I-16145, Genoa, Italy.  
+activityrecognition@smartlab.ws  
+www.smartlab.ws  
 
 
 ## Summary of raw data
@@ -22,7 +19,6 @@ www.smartlab.ws
 > The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain. See 'features_info.txt' for more details. 
 
 >For each record it is provided:
-======================================
 
 >- Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.
 >- Triaxial Angular velocity from the gyroscope. 
@@ -31,7 +27,6 @@ www.smartlab.ws
 >- An identifier of the subject who carried out the experiment.
 
 >The dataset includes the following files:
-=========================================
 
 >- 'README.txt'
 
@@ -60,7 +55,7 @@ www.smartlab.ws
 >- 'train/Inertial Signals/body_gyro_x_train.txt': The angular velocity vector measured by the gyroscope for each window sample. The units are radians/second. 
 
 >Notes: 
-======
+
 >- Features are normalized and bounded within [-1,1].
 >- Each feature vector is a row on the text file.
 
@@ -72,52 +67,53 @@ The data used in this project is part of the [UC Irvine Machine Learning Reposit
 
 ## Variables
 
-See the follwing files (part of the .zip archive) for a full description of variables and units:
-- README.txt
-- features_info.txt
-- features.txt
+See the follwing files (part of the .zip archive) for a full description of variables and units:  
+- README.txt  
+- features_info.txt  
+- features.txt  
 
 ## Transformations
-1. Read in the following files:
-..- features.txt
-..- activity_labels.txt
-..- train/subject_train.txt
-..- train/X_train.txt
-..- train/y_train.txt
-..- test/subject_test.txt
-..- test/X_test.txt
-..- test/y_test.txt
-2. Combine X_train and X_test into a single data set
-3. Label the columns of the combined data set with the features in features.txt
-4. Create a subset of the data based on column names that match the regular expressions `mean.*()` and `std.*()` per project instructions
-5. Rename the columns
-..- remove parentheses
-..- replace hyphens with underscores
-6. Bind activity labels to data set, replace integers with matching values from activity_labels.txt
-7. Add subject identifiers to the data set with values from subject_train.txt and subject_test.txt
+1. Read in the following files:  
+  - 'features.txt'  
+  - 'activity\_labels.txt'  
+  - 'train/subject\_train.txt'  
+  - 'train/X\_train.txt'  
+  - 'train/y\_train.txt'  
+  - 'test/subject\_test.txt'  
+  - 'test/X\_test.txt'  
+  - 'test/y\_test.txt'  
+2. Combine 'X\_train' and 'X\_test' into a single data set  
+3. Label the columns of the combined data set with the features in 'features.txt'  
+4. Create a subset of the data based on column names that match the regular expressions `mean.*()` and `std.*()` per project instructions  
+5. Rename the columns  
+  - remove parentheses  
+  - replace hyphens with underscores  
+6. Bind activity labels to data set, replace integers with matching values from 'activity\_labels.txt'  
+7. Add subject identifiers to the data set with values from 'subject\_train.txt' and 'subject\_test.txt'  
 
 ## Tidy data set
 
-The next part of the assignment was to summarize the data and create a new tidy data set.  The new data set contains the average of each variable for each activity and each subject.  To do this, I used the dplyr library and performed the following steps:
-1. Create a data set called "tidy" using the `group_by()` function, passing Subject and Activity as parameters
-2. Pass this grouped data to `summarise_each()`, specifying "mean" as the argument to the "funs" parameter
-3. The new values in this tidy data set represent averages of each of the variables (by subject/activity), so prefeix each column name with the string "avg_" to make it more descriptive
+The next part of the assignment was to summarize the data and create a new tidy data set.  The new data set contains the average of each variable for each activity and each subject.  To do this, I used the dplyr library and performed the following steps:  
+
+1. Create a data set called "tidy" using the `group_by()` function, passing "Subject" and "Activity" as parameters  
+2. Pass this grouped data to `summarise_each()`, specifying "mean" as the argument to the "funs" parameter  
+3. The new values in this tidy data set represent averages of each of the variables (by subject/activity), so prefeix each column name with the string "avg_" to make it more descriptive  
 4. Write this final data set to the file "tidy.txt"
 
 Sample output of tidy.txt:
 
-```
-> head(tidy)
-Source: local data frame [6 x 81]
-Groups: Subject
-
-  Subject           Activity avg_tBodyAcc_mean_X avg_tBodyAcc_mean_Y
-1       1             LAYING           0.2215982        -0.040513953
-2       1            SITTING           0.2612376        -0.001308288
-3       1           STANDING           0.2789176        -0.016137590
-4       1            WALKING           0.2773308        -0.017383819
-5       1 WALKING_DOWNSTAIRS           0.2891883        -0.009918505
-6       1   WALKING_UPSTAIRS           0.2554617        -0.023953149
+<pre>
+> head(tidy)  
+Source: local data frame [6 x 81]  
+Groups: Subject  
+  
+  Subject           Activity avg_tBodyAcc_mean_X avg_tBodyAcc_mean_Y  
+1       1             LAYING           0.2215982        -0.040513953  
+2       1            SITTING           0.2612376        -0.001308288  
+3       1           STANDING           0.2789176        -0.016137590  
+4       1            WALKING           0.2773308        -0.017383819  
+5       1 WALKING_DOWNSTAIRS           0.2891883        -0.009918505  
+6       1   WALKING_UPSTAIRS           0.2554617        -0.023953149  
 Variables not shown: avg_tBodyAcc_mean_Z (dbl), avg_tBodyAcc_std_X (dbl),
   avg_tBodyAcc_std_Y (dbl), avg_tBodyAcc_std_Z (dbl), avg_tGravityAcc_mean_X
   (dbl), avg_tGravityAcc_mean_Y (dbl), avg_tGravityAcc_mean_Z (dbl),
@@ -154,4 +150,4 @@ Variables not shown: avg_tBodyAcc_mean_Z (dbl), avg_tBodyAcc_std_X (dbl),
   avg_fBodyBodyGyroMag_mean (dbl), avg_fBodyBodyGyroMag_std (dbl),
   avg_fBodyBodyGyroMag_meanFreq (dbl), avg_fBodyBodyGyroJerkMag_mean (dbl),
   avg_fBodyBodyGyroJerkMag_std (dbl), avg_fBodyBodyGyroJerkMag_meanFreq (dbl)
-```
+</pre>
