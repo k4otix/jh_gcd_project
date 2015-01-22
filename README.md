@@ -14,6 +14,4 @@ To use this R script, do the follwing:
 
 Dependenicies: dplyr
 
-Additional detail about the variables and data can be found in the file CodeBook.md
-
-Note: This code was run with R v3.1.2
+\*Note: This code was developed and tested with R v3.1.2
