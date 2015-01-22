@@ -2,9 +2,7 @@
 
 Getting and Cleaning Data - Course Project
 
-This github repo contians the file run_analysis.R, which will read in the UCI HAR Dataset,
-perform several functions to clean and extract a subset of the data, and write a tidy data
-set (tidy.txt, included in the repo).
+This github repo contians the file run_analysis.R, which will read in the UCI HAR Dataset, perform several functions to clean and extract a subset of the data, and write a tidy data set (tidy.txt, included in the repo).  The file CodeBook.md describes how the data was obtianed and processed, as well as more information about the variables contained in the data.
 
 ## Instructions for use
 
